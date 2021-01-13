@@ -1,0 +1,13 @@
+apidetails:
+  title: URA Car Parking API
+  description:  URA Car Parking API
+  version: 1.0
+  terms-of-service: Terms of Service
+  name: HCL Developers
+  url: https://www.hcl.com/in/
+  email: developers@hcl.com
+  license: Apache License Version 2.0
+  licenseUrl: https://www.apache.org/licesen.html
+spring:
+  jpa:
+    show_sql: true
