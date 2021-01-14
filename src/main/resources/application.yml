@@ -10,9 +10,9 @@ apidetails:
   licenseUrl: https://www.apache.org/licesen.html
 spring:
   datasource:
-    url: jdbc:sqlserver://poc-server-hcl.database.windows.net:1433;databaseName=CAR_PARKING_SOL
-    username: hcl-admin
-    password: q1w2e3r4!
+    url: jdbc:sqlserver://ura-sql.database.windows.net:1433;databaseName=ura-db
+    username: uradbadmin
+    password: 9o0T%KRDs!
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
   jpa:
     show_sql: true
