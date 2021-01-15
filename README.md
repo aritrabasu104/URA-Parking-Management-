@@ -1,39 +1,16 @@
-<<<<<<< HEAD
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
-
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
-
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
-
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
-=======
 # URA Car Parking management
 
 This is an application for URA Car Parking management. Api details are available in https://ura-car-parking-app.herokuapp.com/swagger-ui.html#/
 
+## How to Run
 
-## How to Run 
+This application is packaged as a war which has Tomcat 8 embedded. No Tomcat or JBoss installation is necessary. You run it using the `java -jar` command.
 
-This application is packaged as a war which has Tomcat 8 embedded. No Tomcat or JBoss installation is necessary. You run it using the ```java -jar``` command.
+- Clone this repository
+- Make sure you have JRE/JDK 1.8 or higher
 
-* Clone this repository 
-* Make sure you have JRE/JDK 1.8 or higher 
 ```
         java -jar  CarParkingApp-0.0.1-SNAPSHOT.jar
 or
-        mvnw spring-boot:run 
+        mvnw spring-boot:run
 ```
->>>>>>> master
