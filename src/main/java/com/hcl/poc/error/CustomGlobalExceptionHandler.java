@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
+import javax.validation.ConstraintViolationException;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.modelmapper.MappingException;
 import org.springframework.http.HttpHeaders;
@@ -32,7 +33,7 @@ import com.hcl.poc.error.response.CustomErrorResponse;
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 
-	@ExceptionHandler({EntityNotFoundException.class,MappingException.class,
+	@ExceptionHandler({EntityNotFoundException.class,MappingException.class,ConstraintViolationException.class,
 		JsonMappingException.class, IllegalArgumentException.class})
 	public ResponseEntity<?> entityNotFound(Exception ex, WebRequest request) {
 
