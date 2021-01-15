@@ -10,7 +10,4 @@ public class ParkingSlotAvailabilityResponseDto {
 
 	private UUID id;
 	
-	private VehicleCategoryResponseDto vehicleCategory;
-	
-	private Double fee;
 }

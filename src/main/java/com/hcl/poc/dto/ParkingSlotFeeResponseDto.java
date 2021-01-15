@@ -10,7 +10,4 @@ public class ParkingSlotFeeResponseDto {
 
 	private UUID id;
 	
-	private VehicleCategoryResponseDto vehicleCategory;
-	
-	private Integer count;
 }

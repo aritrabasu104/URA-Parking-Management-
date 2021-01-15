@@ -16,6 +16,6 @@ spring:
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
   jpa:
     show_sql: true
-    hibernate:      ddl-auto: create
+    hibernate:      ddl-auto: update
 
   
