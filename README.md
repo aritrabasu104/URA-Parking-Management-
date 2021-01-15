@@ -1,6 +1,6 @@
 # URA Car Parking management
 
-This is an application for URA Car Parking management
+This is an application for URA Car Parking management. Api details are available in https://ura-car-parking-app.herokuapp.com/swagger-ui.html#/
 
 
 ## How to Run 
