@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hcl.poc.common.Validator;
+import com.hcl.poc.dto.Login;
+import com.hcl.poc.dto.LoginResponse;
 import com.hcl.poc.model.AppUser;
-import com.hcl.poc.model.Login;
-import com.hcl.poc.model.LoginResponse;
 import com.hcl.poc.service.LoginService;
 import com.hcl.poc.service.UserService;
 

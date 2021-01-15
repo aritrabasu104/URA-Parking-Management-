@@ -2,8 +2,8 @@ package com.hcl.poc.service.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.hcl.poc.model.Login;
-import com.hcl.poc.model.LoginResponse;
+import com.hcl.poc.dto.Login;
+import com.hcl.poc.dto.LoginResponse;
 import com.hcl.poc.service.LoginService;
 
 @Service
