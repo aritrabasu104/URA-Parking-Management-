@@ -1,5 +1,9 @@
 package com.hcl.poc.dto;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
 public class LoginResponse {
 	private String userName;
 	
@@ -11,37 +15,5 @@ public class LoginResponse {
 
 	public LoginResponse() {
 
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getResponseStatus() {
-		return responseStatus;
-	}
-
-	public void setResponseStatus(String responseStatus) {
-		this.responseStatus = responseStatus;
-	}
-
-	public String getResponseCode() {
-		return responseCode;
-	}
-
-	public void setResponseCode(String responseCode) {
-		this.responseCode = responseCode;
-	}
-
-	public String getResponseMessage() {
-		return responseMessage;
-	}
-
-	public void setResponseMessage(String responseMessage) {
-		this.responseMessage = responseMessage;
 	}
 }
