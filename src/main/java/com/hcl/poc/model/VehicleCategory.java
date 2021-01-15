@@ -23,7 +23,7 @@ public class VehicleCategory {
 	private VEHICLE_SIZE vehicleSize;
 	private VEHICLE_TYPE vehicleType;
 	
-	private enum VEHICLE_TYPE{
+	public enum VEHICLE_TYPE{
 		PRIVATE, COMMERCIAL
 	}
 	public enum VEHICLE_SIZE{

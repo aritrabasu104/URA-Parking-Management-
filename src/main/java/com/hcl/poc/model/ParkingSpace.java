@@ -1,5 +1,6 @@
 package com.hcl.poc.model;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Entity;
@@ -26,10 +27,10 @@ public class ParkingSpace {
 	private String timing;
 	
 	@OneToMany
-	private ParkingSlotAvailability parkingSlotAvailability;
+	private List<ParkingSlotAvailability> parkingSlotAvailability;
 	
 	@OneToMany
-	private ParkingSlotFee parkingSlotFee;
+	private List<ParkingSlotFee> parkingSlotFee;
 		
 	
 }
