@@ -49,5 +49,5 @@ stages:
         archiveType: zip
         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
         replaceExistingArchive: true
-    - upload: $(Build.ArtifactStagingDirectory)
+    - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
       artifact: drop
