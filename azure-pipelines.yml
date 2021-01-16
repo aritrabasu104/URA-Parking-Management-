@@ -9,13 +9,13 @@ trigger:
 variables:
 
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: '34f0ebde-2e0c-4a82-842d-144666daf2fc'
+  azureSubscription: '912ef5c2-d25f-4449-b789-f1cc6d4298f7'
   
   # Web app name
-  webAppName: 'tsura-api'
+  webAppName: 'ura-api'
 
   # Environment name
-  environmentName: 'tsura-api'
+  environmentName: 'ura-api'
   
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -60,7 +60,7 @@ stages:
         deploy:
           steps:
           - task: AzureWebApp@1
-            displayName: 'Azure Web App Deploy: tsura-api'
+            displayName: 'Azure Web App Deploy: ura-api'
             inputs:
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
