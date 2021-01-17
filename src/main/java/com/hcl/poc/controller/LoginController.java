@@ -2,6 +2,7 @@ package com.hcl.poc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import com.hcl.poc.service.LoginService;
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = CorsConfiguration.ALL)
+@Validated
 public class LoginController {
 
 	@Autowired

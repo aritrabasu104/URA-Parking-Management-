@@ -14,5 +14,5 @@ public class ParkingSlotFeeRequestDto {
 	
 	@NotNull
 	@Min(1)
-	private Integer count;
+	private Double cost;
 }

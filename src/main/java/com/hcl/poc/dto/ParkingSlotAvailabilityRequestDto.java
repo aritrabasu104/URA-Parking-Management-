@@ -12,5 +12,5 @@ public class ParkingSlotAvailabilityRequestDto {
 	private VehicleCategoryResponseDto vehicleCategory;
 	
 	@NotNull
-	private Double fee;
+	private Integer count;
 }

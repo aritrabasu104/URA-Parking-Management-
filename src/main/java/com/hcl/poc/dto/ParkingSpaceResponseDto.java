@@ -13,6 +13,8 @@ public class ParkingSpaceResponseDto {
 	
 	private String location;
 	
+	private String city;
+	
 	private String timing;
 	
 	private List<ParkingSlotAvailabilityResponseDto> parkingSlotAvailability;

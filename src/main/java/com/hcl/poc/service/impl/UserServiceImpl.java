@@ -57,5 +57,10 @@ public class UserServiceImpl implements UserService {
 		parkingSpaceRepository.findAll().forEach(result::add);
 		return result;
 	}
+
+	@Override
+	public List<ParkingSpace> getParkingSpacesByCity(String city) {
+		return parkingSpaceRepository.findAllByCity(city);
+	}
 	
 }

@@ -12,4 +12,5 @@ public interface UserService {
 	List<ParkingSlotAvailability> getParkingSlotAvailabilities();
 	List<ParkingSlotFee> getParkingSlotFees();
 	List<ParkingSpace> getParkingSpaces();
+	List<ParkingSpace> getParkingSpacesByCity(String city);
 }

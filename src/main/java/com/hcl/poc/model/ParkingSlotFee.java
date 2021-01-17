@@ -24,5 +24,5 @@ public class ParkingSlotFee {
 	@OneToOne
 	private VehicleCategory vehicleCategory;
 	
-	private Integer count;
+	private Double cost;
 }

@@ -16,6 +16,9 @@ public class ParkingSpaceRequestDto {
 	@NotBlank
 	private String timing;
 	
+	@NotBlank
+	private String city;
+	
 	private List<ParkingSlotAvailabilityResponseDto> parkingSlotAvailability;
 	
 	private List<ParkingSlotFeeResponseDto> parkingSlotFee;

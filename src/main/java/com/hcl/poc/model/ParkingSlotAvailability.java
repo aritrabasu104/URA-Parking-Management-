@@ -24,5 +24,5 @@ public class ParkingSlotAvailability {
 	@OneToOne
 	private VehicleCategory vehicleCategory;
 	
-	private Double fee;
+	private Integer count;
 }

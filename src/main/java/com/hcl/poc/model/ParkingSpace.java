@@ -26,6 +26,8 @@ public class ParkingSpace {
 	
 	private String timing;
 	
+	private String city;
+	
 	@OneToMany
 	private List<ParkingSlotAvailability> parkingSlotAvailability;
 	
