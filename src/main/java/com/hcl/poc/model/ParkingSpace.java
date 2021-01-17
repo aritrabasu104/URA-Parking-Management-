@@ -11,9 +11,10 @@ import javax.persistence.OneToMany;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Getter @Setter
+@Getter @Setter @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class ParkingSpace {
 
