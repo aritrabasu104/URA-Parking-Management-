@@ -5,6 +5,7 @@ import java.util.List;
 import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingSlotFee;
 import com.hcl.poc.model.ParkingSpace;
+import com.hcl.poc.model.Users;
 import com.hcl.poc.model.VehicleCategory;
 
 public interface UserService {
@@ -13,4 +14,5 @@ public interface UserService {
 	List<ParkingSlotFee> getParkingSlotFees();
 	List<ParkingSpace> getParkingSpaces();
 	List<ParkingSpace> getParkingSpacesByCity(String city);
+	Users getUserInfo(String userId);
 }

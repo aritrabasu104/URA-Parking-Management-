@@ -2,6 +2,8 @@ package com.hcl.poc.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +11,12 @@ import org.springframework.stereotype.Service;
 import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingSlotFee;
 import com.hcl.poc.model.ParkingSpace;
+import com.hcl.poc.model.Users;
 import com.hcl.poc.model.VehicleCategory;
 import com.hcl.poc.repository.ParkingSlotAvailabilityRepository;
 import com.hcl.poc.repository.ParkingSlotFeeRepository;
 import com.hcl.poc.repository.ParkingSpaceRepository;
+import com.hcl.poc.repository.UserRepository;
 import com.hcl.poc.repository.VehicleCategoryRepository;
 import com.hcl.poc.service.UserService;
 
@@ -29,6 +33,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private VehicleCategoryRepository vehicleCategoryRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
 	public List<VehicleCategory> getVehicleCategories() {
@@ -63,4 +70,10 @@ public class UserServiceImpl implements UserService {
 		return parkingSpaceRepository.findAllByCity(city);
 	}
 	
+	@Override
+	public Users getUserInfo(String userId) {
+		Optional<Users> user =  userRepository.findById(UUID.fromString(userId));
+		
+		return user.isPresent() ? user.get() : user.orElse(new Users());
+	}
 }

@@ -12,6 +12,8 @@ public class LoginResponse {
 	private String responseCode;
 	
 	private String responseMessage;
+	
+	private String userId;
 
 	public LoginResponse() {
 

@@ -1,32 +1,41 @@
 package com.hcl.poc.service.impl;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hcl.poc.dto.Login;
 import com.hcl.poc.dto.LoginResponse;
+import com.hcl.poc.model.Users;
+import com.hcl.poc.repository.UserRepository;
 import com.hcl.poc.service.LoginService;
 
 @Service
 public class LoginServiceImpl implements LoginService{
 
+	@Autowired 
+	private UserRepository userRepository;
+	
 	@Override
 	public LoginResponse doLogin(Login login) {
 		
 		LoginResponse loginResponse = new LoginResponse();
 		
-		if(("admin".equals(login.getUserName()) && "admin123".equals(login.getPassword())) || 
-				("user".equals(login.getUserName()) && "user123".equals(login.getPassword()))) {
-
-			loginResponse.setResponseCode("200");
-			loginResponse.setResponseMessage("Welcome " + login.getUserName());
+		Optional<Users> users = userRepository.validateLoginUser(login.getUserName(), login.getPassword());
+		
+		if(users.isPresent()) {
+			Users user = users.get();
+			
+			loginResponse.setResponseMessage("Welcome " + user.getApplicantName());
 			loginResponse.setResponseStatus("OK");
-			loginResponse.setUserName(login.getUserName());
-
+			loginResponse.setUserName(user.getApplicantName());
+			loginResponse.setUserId(user.getId().toString());
 		} else {
-			loginResponse.setResponseCode("400");
 			loginResponse.setResponseMessage("Invalid Username or Password");
 			loginResponse.setResponseStatus("FAIL");
-		}
+		} 
+		
 		return loginResponse ;
 	}
 

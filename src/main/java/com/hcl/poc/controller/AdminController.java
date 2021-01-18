@@ -18,11 +18,14 @@ import com.hcl.poc.dto.ParkingSlotFeeRequestDto;
 import com.hcl.poc.dto.ParkingSlotFeeResponseDto;
 import com.hcl.poc.dto.ParkingSpaceRequestDto;
 import com.hcl.poc.dto.ParkingSpaceResponseDto;
+import com.hcl.poc.dto.UserRequestDto;
+import com.hcl.poc.dto.UserResponseDto;
 import com.hcl.poc.dto.VehicleCategoryRequestDto;
 import com.hcl.poc.dto.VehicleCategoryResponseDto;
 import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingSlotFee;
 import com.hcl.poc.model.ParkingSpace;
+import com.hcl.poc.model.Users;
 import com.hcl.poc.model.VehicleCategory;
 import com.hcl.poc.service.AdminService;
 
@@ -65,4 +68,10 @@ public class AdminController {
 				,ParkingSpaceResponseDto.class));
 	}
 	
+	@PostMapping("/create/user")
+	public ResponseEntity<UserResponseDto> createUser(@Valid @RequestBody UserRequestDto userRequestDto) {
+		Users user = modelMapper.map(userRequestDto, Users.class);
+		
+		return ResponseEntity.ok(modelMapper.map(adminService.addUser(user), UserResponseDto.class));
+	}
 }

@@ -3,6 +3,7 @@ package com.hcl.poc.service;
 import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingSlotFee;
 import com.hcl.poc.model.ParkingSpace;
+import com.hcl.poc.model.Users;
 import com.hcl.poc.model.VehicleCategory;
 
 public interface AdminService {
@@ -10,6 +11,7 @@ public interface AdminService {
 	ParkingSlotAvailability addParkingSlotAvailability(ParkingSlotAvailability parkingSlotAvailability);
 	ParkingSlotFee addParkingSlotFee(ParkingSlotFee parkingSlotFee);
 	ParkingSpace addParkingSpace(ParkingSpace parkingSpace);
+	Users addUser(Users user);
 	
 	void removeVehicleCategory(VehicleCategory vehicleCategory);
 	void removeParkingSlotAvailability(ParkingSlotAvailability parkingSlotAvailability);

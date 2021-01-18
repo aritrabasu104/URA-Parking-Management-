@@ -6,10 +6,12 @@ import org.springframework.stereotype.Service;
 import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingSlotFee;
 import com.hcl.poc.model.ParkingSpace;
+import com.hcl.poc.model.Users;
 import com.hcl.poc.model.VehicleCategory;
 import com.hcl.poc.repository.ParkingSlotAvailabilityRepository;
 import com.hcl.poc.repository.ParkingSlotFeeRepository;
 import com.hcl.poc.repository.ParkingSpaceRepository;
+import com.hcl.poc.repository.UserRepository;
 import com.hcl.poc.repository.VehicleCategoryRepository;
 import com.hcl.poc.service.AdminService;
 
@@ -30,6 +32,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private VehicleCategoryRepository vehicleCategoryRepository;
+	
+	@Autowired
+	private UserRepository userRepository;
 	
 	@Override
 	public VehicleCategory addVehicleCategory(VehicleCategory vehicleCategory) {
@@ -53,6 +58,11 @@ public class AdminServiceImpl implements AdminService {
 	public ParkingSpace addParkingSpace(ParkingSpace parkingSpace) {
 		log.info("saving {}",parkingSpace);
 		return parkingSpaceRepository.save(parkingSpace);
+	}
+	
+	@Override
+	public Users addUser(Users user) {
+		return userRepository.save(user);
 	}
 
 	@Override
