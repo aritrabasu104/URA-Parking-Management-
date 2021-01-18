@@ -7,12 +7,14 @@ import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingSlotFee;
 import com.hcl.poc.model.ParkingSpace;
 import com.hcl.poc.model.Users;
+import com.hcl.poc.model.Vehicle;
 import com.hcl.poc.model.VehicleCategory;
 import com.hcl.poc.repository.ParkingSlotAvailabilityRepository;
 import com.hcl.poc.repository.ParkingSlotFeeRepository;
 import com.hcl.poc.repository.ParkingSpaceRepository;
 import com.hcl.poc.repository.UserRepository;
 import com.hcl.poc.repository.VehicleCategoryRepository;
+import com.hcl.poc.repository.VehicleRepository;
 import com.hcl.poc.service.AdminService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +37,9 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Autowired
 	private UserRepository userRepository;
+	
+	@Autowired
+	private VehicleRepository vehicleRepository;
 	
 	@Override
 	public VehicleCategory addVehicleCategory(VehicleCategory vehicleCategory) {
@@ -66,6 +71,13 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
+	public Vehicle addVehicles(Vehicle vehicle) {
+		log.info("saving {}", vehicle);
+		
+		return vehicleRepository.save(vehicle);
+	}
+
+	@Override
 	public void removeVehicleCategory(VehicleCategory vehicleCategory) {
 		log.info("deleting {}",vehicleCategory);
 		vehicleCategoryRepository.delete(vehicleCategory);
@@ -88,5 +100,4 @@ public class AdminServiceImpl implements AdminService {
 		log.info("deleting {}",parkingSpace);
 		parkingSpaceRepository.delete(parkingSpace);
 	}
-
 }
