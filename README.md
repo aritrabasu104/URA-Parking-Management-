@@ -2,6 +2,8 @@
 
 This is an application for URA Car Parking management. Api details are available in https://ura-car-parking-app.herokuapp.com/swagger-ui.html#/
 
+Backend API is published to Azure WebApps, API details are available at: https://tsura-api.azurewebsites.net/swagger-ui.html#
+
 ## How to Run
 
 This application is packaged as a war which has Tomcat 8 embedded. No Tomcat or JBoss installation is necessary. You run it using the `java -jar` command.
