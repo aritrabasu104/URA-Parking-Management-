@@ -41,6 +41,13 @@ stages:
         SourceFolder: '$(System.DefaultWorkingDirectory)'
         Contents: '**/target/*.?(war|jar)'
         TargetFolder: $(Build.ArtifactStagingDirectory)
-    
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your commands here
+          echo 'Rename .jar file'
+          mv $(Build.ArtifactStagingDirectory)/target/CarParkingApp-0.0.1-SNAPSHOT.jar $(Build.ArtifactStagingDirectory)/target/app.jar
+          
     - upload: $(Build.ArtifactStagingDirectory)
       artifact: drop
