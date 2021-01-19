@@ -11,7 +11,7 @@ import com.hcl.poc.model.AppUser;
 
 public interface UserRepository extends CrudRepository<AppUser, UUID> {
 	
-	@Query("SELECT u FROM Users u where u.userName = :username AND u.password = :password")
+	@Query("SELECT u FROM AppUser u where u.userName = :username AND u.password = :password")
     public Optional<AppUser> validateLoginUser(@Param("username") String username, @Param("password") String password);
      
 }

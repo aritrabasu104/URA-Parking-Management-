@@ -52,12 +52,12 @@ public class UserController {
 				,VehicleResponseDto.class));
 	}
 	
-	@GetMapping("/user")
+	@GetMapping("/info")
 	public ResponseEntity<UserResponseDto> getUserInfo(@RequestParam(required = true) UUID userId) {	
 		return ResponseEntity.ok(modelMapper.map(userService.getUserInfo(userId), UserResponseDto.class));
 	}
 	
-	@PutMapping("/user")
+	@PutMapping("/info")
 	public ResponseEntity<UserResponseDto> updateUserInfo(@Valid @RequestBody UserResponseDto userResponseDto) {
 		AppUser user = modelMapper.map(userResponseDto, AppUser.class);
 		return ResponseEntity.ok(modelMapper.map(userService.updateUserInfo(user), UserResponseDto.class));
