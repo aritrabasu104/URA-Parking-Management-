@@ -3,7 +3,7 @@ package com.hcl.poc.dto;
 import java.util.List;
 import java.util.UUID;
 
-import com.hcl.poc.model.Users.USER_STATUS;
+import com.hcl.poc.model.AppUser.USER_STATUS;
 
 import lombok.Getter;
 import lombok.Setter;
