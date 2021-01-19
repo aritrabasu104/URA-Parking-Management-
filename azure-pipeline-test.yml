@@ -16,6 +16,7 @@ steps:
     organization: 'ura'
     scannerMode: 'Other'
 
+
 - task: Maven@3
   inputs:
     mavenPomFile: 'pom.xml'
@@ -24,6 +25,7 @@ steps:
     codeCoverageToolOption: 'JaCoCo'
     codeCoverageFailIfEmpty: true
     javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.11'
     mavenVersionOption: 'Default'
     mavenAuthenticateFeed: false
     effectivePomSkip: false
@@ -31,4 +33,5 @@ steps:
     isJacocoCoverageReportXML: true
     sqMavenPluginVersionChoice: 'latest'
     checkStyleRunAnalysis: true
+    pmdRunAnalysis: true
     findBugsRunAnalysis: true
