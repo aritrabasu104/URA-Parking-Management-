@@ -1,10 +1,13 @@
 package com.hcl.poc.model;
 
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -30,11 +33,16 @@ public class Users {
 	
 	private String contactNo;
 	
-	private String userStatus;
+	private USER_STATUS userStatus;
 	
 	private String userName;
 	
 	private String password;
 	
-	//private List<Vehicle> vehicleList;
+	@OneToMany(cascade = {CascadeType.ALL})
+	private List<Vehicle> vehicleList;
+	
+	public enum USER_STATUS {
+		PENDING, CLEAN, ISSUE_EXIST
+	}
 }

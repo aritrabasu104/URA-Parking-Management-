@@ -1,6 +1,9 @@
 package com.hcl.poc.dto;
 
+import java.util.List;
 import java.util.UUID;
+
+import com.hcl.poc.model.Users.USER_STATUS;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -19,5 +22,7 @@ public class UserResponseDto {
 	
 	private String contactNo;
 	
-	private String userStatus;
+	private USER_STATUS userStatus;
+	
+	private List<VehicleResponseDto> vehicleList;
  }
