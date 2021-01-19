@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/java
 
 trigger:
-- ci-pipeline
+- master
 
 variables:
 
@@ -54,7 +54,7 @@ stages:
         checkStyleRunAnalysis: true
         pmdRunAnalysis: true
         findBugsRunAnalysis: true
-        
+
     - task: Maven@3
       displayName: 'Maven Package'
       inputs:
