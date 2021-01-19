@@ -4,6 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class MyInfoRequestDto {
+public class UserInfoRequestDto {
 	private String userId;
 }
