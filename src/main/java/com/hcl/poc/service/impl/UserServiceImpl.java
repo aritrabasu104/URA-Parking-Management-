@@ -2,7 +2,6 @@ package com.hcl.poc.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingSlotFee;
 import com.hcl.poc.model.ParkingSpace;
-import com.hcl.poc.model.Users;
+import com.hcl.poc.model.AppUser;
 import com.hcl.poc.model.Vehicle;
 import com.hcl.poc.model.VehicleCategory;
 import com.hcl.poc.repository.ParkingSlotAvailabilityRepository;
@@ -76,19 +75,22 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public Users getUserInfo(String userId) {
-		Optional<Users> user =  userRepository.findById(UUID.fromString(userId));
-		
-		return user.isPresent() ? user.get() : user.orElse(new Users());
+	public AppUser getUserInfo(UUID userId) {
+		return userRepository.findById(userId).get();
 	}
 
 	@Override
 	public Vehicle addVehicle(UUID userId, Vehicle vehicle) {
 		vehicle = vehicleRepository.save(vehicle);
-		Users user = userRepository.findById(userId).get();
+		AppUser user = userRepository.findById(userId).get();
 		List<Vehicle> userVehicles = user.getVehicleList();
 		userVehicles.add(vehicle);
 		user.setVehicleList(userVehicles);
 		return vehicle;
+	}
+
+	@Override
+	public AppUser updateUserInfo(AppUser user) {
+		return userRepository.save(user);
 	}
 }

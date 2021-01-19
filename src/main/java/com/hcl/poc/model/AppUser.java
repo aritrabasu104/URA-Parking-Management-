@@ -18,7 +18,7 @@ import lombok.ToString;
 @Getter @Setter @ToString
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Users {
+public class AppUser {
 	
 	@Id
 	@GeneratedValue

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.hcl.poc.dto.Login;
 import com.hcl.poc.dto.LoginResponse;
-import com.hcl.poc.model.Users;
+import com.hcl.poc.model.AppUser;
 import com.hcl.poc.repository.UserRepository;
 import com.hcl.poc.service.LoginService;
 
@@ -22,10 +22,10 @@ public class LoginServiceImpl implements LoginService{
 		
 		LoginResponse loginResponse = new LoginResponse();
 		
-		Optional<Users> users = userRepository.validateLoginUser(login.getUserName(), login.getPassword());
+		Optional<AppUser> users = userRepository.validateLoginUser(login.getUserName(), login.getPassword());
 		
 		if(users.isPresent()) {
-			Users user = users.get();
+			AppUser user = users.get();
 			
 			loginResponse.setResponseMessage("Welcome " + user.getApplicantName());
 			loginResponse.setResponseStatus("OK");

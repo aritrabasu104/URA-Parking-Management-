@@ -3,10 +3,10 @@ package com.hcl.poc.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hcl.poc.model.AppUser;
 import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingSlotFee;
 import com.hcl.poc.model.ParkingSpace;
-import com.hcl.poc.model.Users;
 import com.hcl.poc.model.Vehicle;
 import com.hcl.poc.model.VehicleCategory;
 import com.hcl.poc.repository.ParkingSlotAvailabilityRepository;
@@ -66,7 +66,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public Users addUser(Users user) {
+	public AppUser addUser(AppUser user) {
 		return userRepository.save(user);
 	}
 

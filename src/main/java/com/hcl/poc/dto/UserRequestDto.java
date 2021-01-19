@@ -5,7 +5,7 @@ import java.util.List;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.hcl.poc.model.Users.USER_STATUS;
+import com.hcl.poc.model.AppUser.USER_STATUS;
 
 import lombok.Getter;
 import lombok.Setter;

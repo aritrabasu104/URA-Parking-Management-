@@ -14,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,12 +23,12 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import com.hcl.poc.dto.ParkingSlotFeeResponseDto;
 import com.hcl.poc.dto.ParkingSpaceResponseDto;
-import com.hcl.poc.dto.UserInfoRequestDto;
 import com.hcl.poc.dto.UserResponseDto;
 import com.hcl.poc.dto.VehicleCategoryResponseDto;
 import com.hcl.poc.dto.VehicleRequestDto;
 import com.hcl.poc.dto.VehicleResponseDto;
 import com.hcl.poc.model.ParkingSlotAvailability;
+import com.hcl.poc.model.AppUser;
 import com.hcl.poc.model.Vehicle;
 import com.hcl.poc.service.UserService;
 
@@ -51,10 +52,15 @@ public class UserController {
 				,VehicleResponseDto.class));
 	}
 	
-	@PostMapping("/user")
-	public ResponseEntity<UserResponseDto> getUserInfo(@Valid @RequestBody UserInfoRequestDto userInfoRequestDto) {
-		
-		return ResponseEntity.ok(modelMapper.map(userService.getUserInfo(userInfoRequestDto.getUserId()), UserResponseDto.class));
+	@GetMapping("/user")
+	public ResponseEntity<UserResponseDto> getUserInfo(@RequestParam(required = true) UUID userId) {	
+		return ResponseEntity.ok(modelMapper.map(userService.getUserInfo(userId), UserResponseDto.class));
+	}
+	
+	@PutMapping("/user")
+	public ResponseEntity<UserResponseDto> updateUserInfo(@Valid @RequestBody UserResponseDto userResponseDto) {
+		AppUser user = modelMapper.map(userResponseDto, AppUser.class);
+		return ResponseEntity.ok(modelMapper.map(userService.updateUserInfo(user), UserResponseDto.class));
 	}
 	
 	@GetMapping("/vehicleCategory")
