@@ -2,6 +2,7 @@ package com.hcl.poc.model;
 
 import java.util.UUID;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -12,10 +13,11 @@ import com.hcl.poc.model.VehicleCategory.VEHICLE_TYPE;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Getter @Setter
+@Getter @Setter @ToString
 public class Vehicle {
 	
 	@Id
@@ -23,6 +25,7 @@ public class Vehicle {
 	@EqualsAndHashCode.Include
 	private UUID id;
 	
+	@Column(unique = true)
 	private String vehicleNo;
 	
 	private String uenNumber;

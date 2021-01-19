@@ -12,12 +12,14 @@ import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingSlotFee;
 import com.hcl.poc.model.ParkingSpace;
 import com.hcl.poc.model.Users;
+import com.hcl.poc.model.Vehicle;
 import com.hcl.poc.model.VehicleCategory;
 import com.hcl.poc.repository.ParkingSlotAvailabilityRepository;
 import com.hcl.poc.repository.ParkingSlotFeeRepository;
 import com.hcl.poc.repository.ParkingSpaceRepository;
 import com.hcl.poc.repository.UserRepository;
 import com.hcl.poc.repository.VehicleCategoryRepository;
+import com.hcl.poc.repository.VehicleRepository;
 import com.hcl.poc.service.UserService;
 
 @Service
@@ -30,6 +32,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private ParkingSpaceRepository parkingSpaceRepository;
+	
+	@Autowired
+	private VehicleRepository vehicleRepository;
 	
 	@Autowired
 	private VehicleCategoryRepository vehicleCategoryRepository;
@@ -67,7 +72,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<ParkingSpace> getParkingSpacesByCity(String city) {
-		return parkingSpaceRepository.findAllByCity(city);
+		return parkingSpaceRepository.findAllByCityIgnoreCase(city);
 	}
 	
 	@Override
@@ -75,5 +80,15 @@ public class UserServiceImpl implements UserService {
 		Optional<Users> user =  userRepository.findById(UUID.fromString(userId));
 		
 		return user.isPresent() ? user.get() : user.orElse(new Users());
+	}
+
+	@Override
+	public Vehicle addVehicle(UUID userId, Vehicle vehicle) {
+		vehicle = vehicleRepository.save(vehicle);
+		Users user = userRepository.findById(userId).get();
+		List<Vehicle> userVehicles = user.getVehicleList();
+		userVehicles.add(vehicle);
+		user.setVehicleList(userVehicles);
+		return vehicle;
 	}
 }

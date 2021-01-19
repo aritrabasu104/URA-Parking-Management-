@@ -2,8 +2,8 @@ package com.hcl.poc.dto;
 
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 import com.hcl.poc.model.Users.USER_STATUS;
 
@@ -12,29 +12,29 @@ import lombok.Setter;
 
 @Getter @Setter
 public class UserRequestDto {
-	@NotNull
+	@NotBlank
 	private String applicantName;
 	
-	@NotNull
+	@NotBlank
 	private String nricNo;
 	
-	@NotNull
+	@NotBlank
 	private String registeredAddress;
 	
-	@NotNull
+	@NotBlank
 	private String mailingAddress;
 	
-	@NotNull
+	@NotBlank
 	//@Pattern()
 	private String contactNo;
 	
 	@NotNull
 	private USER_STATUS userStatus;
 	
-	@NotNull
+	@NotBlank
 	private String userName;
 	
-	@NotNull
+	@NotBlank
 	private String password;
 	
 	private List<VehicleRequestDto> vehicleList;
