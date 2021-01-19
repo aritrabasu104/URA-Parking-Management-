@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -35,6 +36,9 @@ public class AppUser {
 	
 	@Column(unique = true)
 	private String contactNo;
+	
+	@Email
+	private String emailId;
 	
 	private USER_STATUS userStatus;
 	

@@ -23,6 +23,7 @@ import org.springframework.web.cors.CorsConfiguration;
 
 import com.hcl.poc.dto.ParkingSlotFeeResponseDto;
 import com.hcl.poc.dto.ParkingSpaceResponseDto;
+import com.hcl.poc.dto.UserInfoUpdateDto;
 import com.hcl.poc.dto.UserResponseDto;
 import com.hcl.poc.dto.VehicleCategoryResponseDto;
 import com.hcl.poc.dto.VehicleRequestDto;
@@ -58,8 +59,8 @@ public class UserController {
 	}
 	
 	@PutMapping("/info")
-	public ResponseEntity<UserResponseDto> updateUserInfo(@Valid @RequestBody UserResponseDto userResponseDto) {
-		AppUser user = modelMapper.map(userResponseDto, AppUser.class);
+	public ResponseEntity<UserResponseDto> updateUserInfo(@Valid @RequestBody UserInfoUpdateDto userInfoUpdateDto) {
+		AppUser user = modelMapper.map(userInfoUpdateDto, AppUser.class);
 		return ResponseEntity.ok(modelMapper.map(userService.updateUserInfo(user), UserResponseDto.class));
 	}
 	

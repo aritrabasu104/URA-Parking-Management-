@@ -2,6 +2,7 @@ package com.hcl.poc.dto;
 
 import java.util.List;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
@@ -23,6 +24,9 @@ public class UserRequestDto {
 	
 	@NotBlank
 	private String mailingAddress;
+	
+	@Email
+	private String emailId;
 	
 	@NotBlank
 	//@Pattern()

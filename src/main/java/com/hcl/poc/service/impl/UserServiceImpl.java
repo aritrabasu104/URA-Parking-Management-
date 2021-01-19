@@ -91,6 +91,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public AppUser updateUserInfo(AppUser user) {
-		return userRepository.save(user);
+		AppUser currentUser = userRepository.findById(user.getId()).get();
+		currentUser.setEmailId(user.getEmailId());
+		currentUser.setContactNo(user.getContactNo());
+		currentUser.setMailingAddress(user.getMailingAddress());
+		currentUser.setRegisteredAddress(user.getRegisteredAddress());
+		return userRepository.save(currentUser);
 	}
 }
