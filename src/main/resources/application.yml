@@ -15,7 +15,7 @@ spring:
     password: 9o0T%KRDs!
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
   jpa:
-    hibernate:      ddl-auto: create
+    hibernate:      ddl-auto: update
 logging:
   level: 
     org: 
