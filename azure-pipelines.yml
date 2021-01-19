@@ -38,10 +38,24 @@ stages:
         scannerMode: 'Other'
     
     - task: Maven@3
-      displayName: 'Maven Package'
       inputs:
         mavenPomFile: 'pom.xml'
-    - task: SonarCloudAnalyze@1
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        testRunTitle: 'ura-backend'
+        codeCoverageToolOption: 'Cobertura'
+        codeCoverageFailIfEmpty: true
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: true
+        isJacocoCoverageReportXML: true
+        sqMavenPluginVersionChoice: 'latest'
+        checkStyleRunAnalysis: true
+        pmdRunAnalysis: true
+        findBugsRunAnalysis: true
+    
     
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
