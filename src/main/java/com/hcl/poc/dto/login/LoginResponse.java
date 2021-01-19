@@ -1,4 +1,4 @@
-package com.hcl.poc.dto;
+package com.hcl.poc.dto.login;
 
 import lombok.Getter;
 import lombok.Setter;

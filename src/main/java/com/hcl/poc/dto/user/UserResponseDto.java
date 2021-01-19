@@ -1,11 +1,12 @@
-package com.hcl.poc.dto;
+package com.hcl.poc.dto.user;
 
 import java.util.List;
 import java.util.UUID;
 
 import javax.validation.constraints.Email;
 
-import com.hcl.poc.model.AppUser.USER_STATUS;
+import com.hcl.poc.dto.vehicle.VehicleResponseDto;
+import com.hcl.poc.model.AppUser.UserStaus;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +28,7 @@ public class UserResponseDto {
 	
 	private String contactNo;
 	
-	private USER_STATUS userStatus;
+	private UserStaus userStatus;
 	
 	private List<VehicleResponseDto> vehicleList;
  }

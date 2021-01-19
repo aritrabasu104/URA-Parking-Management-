@@ -6,6 +6,7 @@ import java.util.UUID;
 import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingSlotFee;
 import com.hcl.poc.model.ParkingSpace;
+import com.hcl.poc.model.ParkingTicket;
 import com.hcl.poc.model.AppUser;
 import com.hcl.poc.model.Vehicle;
 import com.hcl.poc.model.VehicleCategory;
@@ -19,4 +20,6 @@ public interface UserService {
 	AppUser getUserInfo(UUID userId);
 	Vehicle addVehicle(UUID userId, Vehicle vehicle);
 	AppUser updateUserInfo(AppUser user);
+	Vehicle updateVehicle(Vehicle vehicle);
+	ParkingTicket requestParkingTicket(ParkingTicket parkingTicket);
 }

@@ -9,5 +9,5 @@ import com.hcl.poc.model.ParkingSpace;
 
 public interface ParkingSpaceRepository extends CrudRepository<ParkingSpace, UUID> {
 
-	List<ParkingSpace> findAllByCityIgnoreCase(String city);
+	List<ParkingSpace> findAllByCityContainingIgnoreCase(String city);
 }

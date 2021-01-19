@@ -1,4 +1,4 @@
-package com.hcl.poc.dto;
+package com.hcl.poc.dto.vehicle;
 
 import com.hcl.poc.model.VehicleCategory.VEHICLE_SIZE;
 import com.hcl.poc.model.VehicleCategory.VEHICLE_TYPE;

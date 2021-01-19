@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.cors.CorsConfiguration;
 
 import com.hcl.poc.common.Validator;
-import com.hcl.poc.dto.Login;
-import com.hcl.poc.dto.LoginResponse;
+import com.hcl.poc.dto.login.Login;
+import com.hcl.poc.dto.login.LoginResponse;
 import com.hcl.poc.service.LoginService;
 
 @RestController
