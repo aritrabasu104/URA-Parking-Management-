@@ -21,15 +21,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.cors.CorsConfiguration;
 
-import com.hcl.poc.dto.ParkingSlotFeeResponseDto;
-import com.hcl.poc.dto.ParkingSpaceResponseDto;
-import com.hcl.poc.dto.UserInfoUpdateDto;
-import com.hcl.poc.dto.UserResponseDto;
-import com.hcl.poc.dto.VehicleCategoryResponseDto;
-import com.hcl.poc.dto.VehicleRequestDto;
-import com.hcl.poc.dto.VehicleResponseDto;
-import com.hcl.poc.model.ParkingSlotAvailability;
+import com.hcl.poc.dto.parking.ParkingSlotFeeResponseDto;
+import com.hcl.poc.dto.parking.ParkingSpaceResponseDto;
+import com.hcl.poc.dto.parking.ParkingTicketRequestDto;
+import com.hcl.poc.dto.parking.ParkingTicketResponseDto;
+import com.hcl.poc.dto.user.UserInfoUpdateDto;
+import com.hcl.poc.dto.user.UserResponseDto;
+import com.hcl.poc.dto.vehicle.VehicleCategoryResponseDto;
+import com.hcl.poc.dto.vehicle.VehicleRequestDto;
+import com.hcl.poc.dto.vehicle.VehicleResponseDto;
 import com.hcl.poc.model.AppUser;
+import com.hcl.poc.model.ParkingSlotAvailability;
+import com.hcl.poc.model.ParkingTicket;
 import com.hcl.poc.model.Vehicle;
 import com.hcl.poc.service.UserService;
 
@@ -52,6 +55,13 @@ public class UserController {
 		return ResponseEntity.ok(modelMapper.map(userService.addVehicle(userId,vehicle)
 				,VehicleResponseDto.class));
 	}
+	
+	@PutMapping("/vehicle")
+	public ResponseEntity<VehicleResponseDto> updateVehicle(@Valid @RequestBody VehicleResponseDto vehicleResponseDto) {
+		Vehicle vehicle = modelMapper.map(vehicleResponseDto, Vehicle.class);
+		return ResponseEntity.ok(modelMapper.map(userService.updateVehicle(vehicle),VehicleResponseDto.class));
+	}
+	
 	
 	@GetMapping("/info")
 	public ResponseEntity<UserResponseDto> getUserInfo(@RequestParam(required = true) UUID userId) {	
@@ -92,5 +102,12 @@ public class UserController {
 	public ResponseEntity<List<ParkingSpaceResponseDto>> getParkingSpacesByCity(@RequestParam @NotBlank String city) {
 		return ResponseEntity.ok(userService.getParkingSpacesByCity(city).stream().map(item->modelMapper.map(item
 				,ParkingSpaceResponseDto.class)).collect(Collectors.toList()));
+	}
+	
+	@PostMapping("/ticket")
+	public ResponseEntity<ParkingTicketResponseDto> requestParkingTicket(@Valid @RequestBody ParkingTicketRequestDto parkingTicketRequestDto) {
+		ParkingTicket parkingTicket = modelMapper.map(parkingTicketRequestDto, ParkingTicket.class);
+		return ResponseEntity.ok(modelMapper.map(userService.requestParkingTicket(parkingTicket)
+				,ParkingTicketResponseDto.class));
 	}
 }

@@ -40,7 +40,7 @@ public class AppUser {
 	@Email
 	private String emailId;
 	
-	private USER_STATUS userStatus;
+	private UserStaus userStatus;
 	
 	private String userName;
 	
@@ -49,7 +49,7 @@ public class AppUser {
 	@OneToMany(cascade = {CascadeType.ALL})
 	private List<Vehicle> vehicleList;
 	
-	public enum USER_STATUS {
+	public enum UserStaus {
 		PENDING, CLEAN, ISSUE_EXIST
 	}
 }
