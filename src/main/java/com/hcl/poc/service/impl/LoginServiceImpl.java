@@ -35,6 +35,7 @@ public class LoginServiceImpl implements LoginService{
 			loginResponse.setResponseStatus("OK");
 			loginResponse.setUserName(user.getApplicantName());
 			loginResponse.setUserId(user.getId().toString());
+			log.info("login successful for {}", login);
 		} else {
 			loginResponse.setResponseMessage("Invalid Username or Password");
 			loginResponse.setResponseStatus("FAIL");

@@ -67,6 +67,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<VehicleCategory> getVehicleCategories() {
+		log.info("fetching vehcileCategories");
 		List<VehicleCategory> result = new ArrayList<>();
 		vehicleCategoryRepository.findAll().forEach(result::add);
 		return result;
@@ -74,6 +75,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<ParkingSlotAvailability> getParkingSlotAvailabilities() {
+		log.info("fetching ParkingSlotAvailabilities");
 		List<ParkingSlotAvailability> result = new ArrayList<>();
 		parkingSlotAvailabilityRepository.findAll().forEach(result::add);
 		return result;
@@ -95,16 +97,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<ParkingSpace> getParkingSpacesByCity(String city) {
+		log.info("searching ParkingSpaces for {}", city);
 		return parkingSpaceRepository.findAllByCityContainingIgnoreCase(city);
 	}
 
 	@Override
 	public AppUser getUserInfo(UUID userId) {
+		log.info("fetching UserInfo for {}", userId);
 		return userRepository.findById(userId).get();
 	}
 
 	@Override
 	public Vehicle addVehicle(UUID userId, Vehicle vehicle) {
+		log.info("adding vehicle {} for {}", vehicle, userId);
 		vehicle = vehicleRepository.save(vehicle);
 		AppUser user = userRepository.findById(userId).get();
 		List<Vehicle> userVehicles = user.getVehicleList();
@@ -115,6 +120,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public AppUser updateUserInfo(AppUser user) {
+		log.info("updating UserInfo for {}", user);
 		AppUser currentUser = userRepository.findById(user.getId()).get();
 		currentUser.setEmailId(user.getEmailId());
 		currentUser.setContactNo(user.getContactNo());
@@ -125,33 +131,36 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public Vehicle updateVehicle(Vehicle vehicle) {
+		log.info("updating VehicleInfo for {}", vehicle);
 		return vehicleRepository.save(vehicle);
 	}
 
 	@Override
 	public ParkingTicket requestParkingTicket(ParkingTicket parkingTicket) {
+		log.info("Requsting ParkingTicket {}", parkingTicket);
 		AppUser user = userRepository.findById(parkingTicket.getUser().getId()).get();
-		if(user.getUserStatus().equals(UserStaus.ISSUE_EXIST)) {
+		if (user.getUserStatus().equals(UserStaus.ISSUE_EXIST)) {
 			parkingTicket.setStatus(TicketStatus.REJECTED);
 			parkingTicket.setDetail(USER_HAS_PENDING_ISSUES);
-		}else if(user.getUserStatus().equals(UserStaus.PENDING)) {
+		} else if (user.getUserStatus().equals(UserStaus.PENDING)) {
 			parkingTicket.setStatus(TicketStatus.PENDING);
 			parkingTicket.setDetail(USER_ACCOUUNT_IS_PENDING);
-		}else {
+		} else {
 			Vehicle vehicle = vehicleRepository.findById(parkingTicket.getVehicle().getId()).get();
 			ParkingSpace parkingSpace = parkingSpaceRepository.findById(parkingTicket.getParkingSpace().getId()).get();
-			boolean shouldAllot = parkingSpace.getParkingSlotAvailability().stream().anyMatch(item ->{
+			boolean shouldAllot = parkingSpace.getParkingSlotAvailability().stream().anyMatch(item -> {
 				return item.getVehicleCategory().getVehicleSize().equals(vehicle.getVehicleSize())
 						&& item.getVehicleCategory().getVehicleType().equals(vehicle.getVehiclType())
-						&& item.getCount()>0;
+						&& item.getCount() > 0;
 			});
-			if(shouldAllot) {
+			if (shouldAllot) {
 				parkingTicket.setStatus(TicketStatus.APPROVED);
 				parkingTicket.setDetail(TICKET_IS_APPROVED);
-			}else {
+			} else {
 				parkingTicket.setStatus(TicketStatus.REJECTED);
 				parkingTicket.setDetail(PARKING_IS_NOT_AVAILABLE);
 			}
 		}
 		return parkingTicketRepository.save(parkingTicket);
-}}
+	}
+}
