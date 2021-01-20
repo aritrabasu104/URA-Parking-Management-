@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.cors.CorsConfiguration;
 
-import com.hcl.poc.common.Validator;
 import com.hcl.poc.dto.login.Login;
 import com.hcl.poc.dto.login.LoginResponse;
 import com.hcl.poc.service.LoginService;
@@ -23,17 +22,9 @@ public class LoginController {
 
 	@Autowired
 	private LoginService loginService;
-	
-	@Autowired
-	private Validator validator;
-	
+
 	@PostMapping("/login")
 	public ResponseEntity<LoginResponse> login(@RequestBody Login  login) {
-		LoginResponse loginResponse = validator.validateLoginUser(login);
-		
-		if("FAIL".equalsIgnoreCase(loginResponse.getResponseStatus()))
-			return ResponseEntity.ok(loginResponse);
-		else
-			return ResponseEntity.ok(loginService.doLogin(login));
+		return ResponseEntity.ok(loginService.doLogin(login));
 	}
 }
