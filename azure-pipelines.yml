@@ -54,9 +54,17 @@ stages:
         checkStyleRunAnalysis: true
         pmdRunAnalysis: true
         findBugsRunAnalysis: false
+
+    - task: PublishTestResults@2
+      inputs:
+        testResultsFormat: 'JUnit'
+        testResultsFiles: '**/TEST-*.xml'
+        testRunTitle: 'CarParkingAPPTests'
+
     - task: SonarCloudPublish@1
       inputs:
         pollingTimeoutSec: '300'
+
     - task: PowerShell@2
       inputs:
         targetType: 'inline'
@@ -74,6 +82,7 @@ stages:
           else{
               throw "Quality gate failed. Please check and fix the issues by reviewing the same."
           }
+          
     - task: Maven@3
       displayName: 'Maven Package'
       inputs:
