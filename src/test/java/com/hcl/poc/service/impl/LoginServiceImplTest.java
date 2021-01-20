@@ -12,10 +12,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hcl.poc.dto.Login;
-import com.hcl.poc.dto.LoginResponse;
+import com.hcl.poc.dto.login.Login;
+import com.hcl.poc.dto.login.LoginResponse;
 import com.hcl.poc.model.AppUser;
 import com.hcl.poc.repository.UserRepository;
+
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class LoginServiceImplTest {
