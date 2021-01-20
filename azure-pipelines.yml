@@ -55,7 +55,9 @@ stages:
         checkStyleRunAnalysis: true
         pmdRunAnalysis: true
         findBugsRunAnalysis: true
-
+    - task: SonarCloudPublish@1
+      inputs:
+        pollingTimeoutSec: '300'
     - task: Maven@3
       displayName: 'Maven Package'
       inputs:
