@@ -4,8 +4,8 @@ import java.util.Objects;
 
 import org.springframework.stereotype.Component;
 
-import com.hcl.poc.dto.Login;
-import com.hcl.poc.dto.LoginResponse;
+import com.hcl.poc.dto.login.Login;
+import com.hcl.poc.dto.login.LoginResponse;
 
 @Component
 public class Validator {

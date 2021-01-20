@@ -1,4 +1,4 @@
-package com.hcl.poc.dto;
+package com.hcl.poc.dto.user;
 
 import java.util.List;
 
@@ -6,7 +6,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.hcl.poc.model.AppUser.USER_STATUS;
+import com.hcl.poc.dto.vehicle.VehicleRequestDto;
+import com.hcl.poc.model.AppUser.UserStaus;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,7 +34,7 @@ public class UserRequestDto {
 	private String contactNo;
 	
 	@NotNull
-	private USER_STATUS userStatus;
+	private UserStaus userStatus;
 	
 	@NotBlank
 	private String userName;

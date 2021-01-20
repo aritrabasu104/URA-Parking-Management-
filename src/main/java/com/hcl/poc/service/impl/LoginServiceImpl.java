@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hcl.poc.dto.Login;
-import com.hcl.poc.dto.LoginResponse;
+import com.hcl.poc.dto.login.Login;
+import com.hcl.poc.dto.login.LoginResponse;
 import com.hcl.poc.model.AppUser;
 import com.hcl.poc.repository.UserRepository;
 import com.hcl.poc.service.LoginService;

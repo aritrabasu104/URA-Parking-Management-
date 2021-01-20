@@ -15,7 +15,7 @@ spring:
     password: 9o0T%KRDs!
     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
   jpa:
-    hibernate:      ddl-auto: create
+    hibernate:      ddl-auto: update
 logging:
   level: 
     org: 
@@ -26,5 +26,12 @@ logging:
             sql: 
               BasicBinder: TRACE
       
-
-  
+msg:
+    userstatus: 
+      pending: User account is not activated yet, once activated we will process the ticket request
+      error: User has pedning issues, please resolve the same before raising parking ticket request
+    parking:
+      notavilable: Parking is not available for the selected vehicle 
+    ticket:
+      approved: Parking ticket is now approved
+     

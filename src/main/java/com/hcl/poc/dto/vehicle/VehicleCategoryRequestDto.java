@@ -1,4 +1,4 @@
-package com.hcl.poc.dto;
+package com.hcl.poc.dto.vehicle;
 
 import javax.validation.constraints.NotNull;
 

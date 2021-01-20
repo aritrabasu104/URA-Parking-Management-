@@ -20,6 +20,7 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
+
 stages:
 - stage: Build
   displayName: Build stage
@@ -30,11 +31,17 @@ stages:
       vmImage: $(vmImageName)
     
     steps:
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'sonarcloud-ura-backend'
+        organization: 'ura'
+        scannerMode: 'Other'
+    
     - task: Maven@3
       displayName: 'Maven Package'
       inputs:
-        mavenPomFile: 'pom.xml'
-
+        mavenPomFile: 'pom.xml'    
+    
     - task: CopyFiles@2
       displayName: 'Copy Files to artifact staging directory'
       inputs:
@@ -48,9 +55,6 @@ stages:
           # Write your commands here
           echo 'Rename .jar file'
           mv $(Build.ArtifactStagingDirectory)/target/CarParkingApp-0.0.1-SNAPSHOT.jar $(Build.ArtifactStagingDirectory)/target/app.jar
-          
-    - upload: $(Build.ArtifactStagingDirectory)
-      artifact: drop
 
 - stage: Deploy
   displayName: Deploy stage
@@ -72,4 +76,4 @@ stages:
               azureSubscription: $(azureSubscription)
               appType: webAppLinux
               appName: $(webAppName)
-              package: '$(Pipeline.Workspace)/drop/**/target/*.?(war|jar)'
+              package: '$(Pipeline.Workspace)/**/target/*.?(war|jar)'

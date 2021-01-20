@@ -1,4 +1,4 @@
-package com.hcl.poc.dto;
+package com.hcl.poc.dto.login;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
