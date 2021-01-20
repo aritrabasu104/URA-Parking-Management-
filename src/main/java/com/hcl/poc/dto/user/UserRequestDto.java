@@ -44,7 +44,4 @@ public class UserRequestDto {
 	
 	private List<VehicleRequestDto> vehicleList;
 
-	public UserRequestDto() {
-
-	}
 }

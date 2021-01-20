@@ -37,9 +37,10 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 
 
 	@ExceptionHandler({EntityNotFoundException.class,MappingException.class,ConstraintViolationException.class,
+		org.hibernate.exception.ConstraintViolationException.class,
 		JsonMappingException.class, IllegalArgumentException.class, UserNotFoundException.class,
 		VehicleNotFoundException.class,ParkingSpaceNotFoundException.class})
-	public ResponseEntity<?> entityNotFound(Exception ex, WebRequest request) {
+	public ResponseEntity<CustomErrorResponse> entityNotFound(Exception ex, WebRequest request) {
 
 		CustomErrorResponse errors = new CustomErrorResponse();
 		errors.setTimestamp(LocalDateTime.now());
@@ -51,7 +52,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 	}
 	
 	@ExceptionHandler(NoSuchElementException.class)
-	public ResponseEntity<?> elementNotFound(Exception ex, WebRequest request) {
+	public ResponseEntity<CustomErrorResponse> elementNotFound(Exception ex, WebRequest request) {
 
 		CustomErrorResponse errors = new CustomErrorResponse();
 		errors.setTimestamp(LocalDateTime.now());
@@ -62,17 +63,6 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 
 	}
 	
-	@ExceptionHandler(org.hibernate.exception.ConstraintViolationException.class)
-	public ResponseEntity<?> sqlConstrintViolation(Exception ex, WebRequest request) {
-
-		CustomErrorResponse errors = new CustomErrorResponse();
-		errors.setTimestamp(LocalDateTime.now());
-		errors.setError(ExceptionUtils.getRootCauseMessage(ex));
-		errors.setStatus(HttpStatus.BAD_REQUEST.value());
-
-		return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-
-	}
 	
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(
