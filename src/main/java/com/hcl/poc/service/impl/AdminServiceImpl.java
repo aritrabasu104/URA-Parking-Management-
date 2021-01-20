@@ -67,6 +67,7 @@ public class AdminServiceImpl implements AdminService {
 	
 	@Override
 	public AppUser addUser(AppUser user) {
+		log.info("saving {}", user);
 		return userRepository.save(user);
 	}
 

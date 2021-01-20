@@ -8,13 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.hcl.poc.model.AppUser;
+import com.hcl.poc.model.AppUser.UserStaus;
 import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingSlotFee;
 import com.hcl.poc.model.ParkingSpace;
 import com.hcl.poc.model.ParkingTicket;
 import com.hcl.poc.model.ParkingTicket.TicketStatus;
-import com.hcl.poc.model.AppUser;
-import com.hcl.poc.model.AppUser.UserStaus;
 import com.hcl.poc.model.Vehicle;
 import com.hcl.poc.model.VehicleCategory;
 import com.hcl.poc.repository.ParkingSlotAvailabilityRepository;
@@ -26,7 +26,10 @@ import com.hcl.poc.repository.VehicleCategoryRepository;
 import com.hcl.poc.repository.VehicleRepository;
 import com.hcl.poc.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class UserServiceImpl implements UserService {
 
 	@Value("${msg.userstatus.error}")

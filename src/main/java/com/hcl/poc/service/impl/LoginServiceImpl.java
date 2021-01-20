@@ -11,7 +11,10 @@ import com.hcl.poc.model.AppUser;
 import com.hcl.poc.repository.UserRepository;
 import com.hcl.poc.service.LoginService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class LoginServiceImpl implements LoginService{
 
 	@Autowired 
@@ -19,6 +22,7 @@ public class LoginServiceImpl implements LoginService{
 	
 	@Override
 	public LoginResponse doLogin(Login login) {
+		log.info("validating {}",login);
 		
 		LoginResponse loginResponse = new LoginResponse();
 		
@@ -34,6 +38,8 @@ public class LoginServiceImpl implements LoginService{
 		} else {
 			loginResponse.setResponseMessage("Invalid Username or Password");
 			loginResponse.setResponseStatus("FAIL");
+			log.error("invalid credentials {}",login);
+			
 		} 
 		
 		return loginResponse ;
