@@ -57,7 +57,23 @@ stages:
     - task: SonarCloudPublish@1
       inputs:
         pollingTimeoutSec: '300'
-    
+    - task: PowerShell@2
+      inputs:
+        targetType: 'inline'
+        script: |
+          # Write your PowerShell commands here.
+          
+          Write-Host "Verify SonarCloud Quality Gate Result"
+          $QualityGateResult = Invoke-RestMethod -Method Get -Uri "https://sonarcloud.io/api/qualitygates/project_status?projectKey=ura-backend"
+          
+          $QualityGateResult | ConvertTo-Json | Write-Host
+            
+          if ($QualityGateResult.projectStatus.status -eq "OK"){
+              Write-Host "Quality Gate Succeeded"
+          }
+          else{
+              throw "Quality gate failed. Please check and fix the issues by reviewing the same."
+          }
     - task: Maven@3
       displayName: 'Maven Package'
       inputs:
@@ -83,3 +99,24 @@ stages:
         PathtoPublish: '$(Build.ArtifactStagingDirectory)'
         ArtifactName: 'drop'
         publishLocation: 'Container'
+- stage: Deploy
+  displayName: Deploy stage
+  dependsOn: Build
+  condition: succeeded()
+  jobs:
+  - deployment: DeployLinuxWebApp
+    displayName: Deploy Linux Web App
+    environment: $(environmentName)
+    pool: 
+      vmImage: $(vmImageName)
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureWebApp@1
+            displayName: 'Azure Web App Deploy: ura-api'
+            inputs:
+              azureSubscription: $(azureSubscription)
+              appType: webAppLinux
+              appName: $(webAppName)
+              package: '$(Pipeline.Workspace)/**/target/*.?(war|jar)'
