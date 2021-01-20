@@ -18,6 +18,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import com.hcl.poc.model.ParkingSlotAvailability;
+import com.hcl.poc.model.ParkingSlotFee;
+import com.hcl.poc.model.ParkingSpace;
 import com.hcl.poc.model.VehicleCategory;
 import com.hcl.poc.model.VehicleCategory.VEHICLE_SIZE;
 import com.hcl.poc.model.VehicleCategory.VEHICLE_TYPE;
@@ -59,6 +62,9 @@ public class UserServiceImplTest {
 	private UserServiceImpl userService;
 	
 	private List<VehicleCategory> vehicleCategories;
+	private List<ParkingSlotAvailability> parkingSlotAvailabilities;
+	private List<ParkingSlotFee> parkingSlotFees;
+	private List<ParkingSpace> parkingSpaces;
 	
 	@Before
 	public void init() {
@@ -68,11 +74,31 @@ public class UserServiceImplTest {
 		vehicleCategory.setId(UUID.randomUUID());
 		vehicleCategory.setVehicleSize(VEHICLE_SIZE.LIGHT);
 		vehicleCategory.setVehicleType(VEHICLE_TYPE.PRIVATE);
-		vehicleCategories.add(vehicleCategory);
-				
+		vehicleCategories = List.of(vehicleCategory);
+		
+		ParkingSlotAvailability parkingSlotAvailability = new ParkingSlotAvailability();
+		parkingSlotAvailability.setId(UUID.randomUUID());
+		parkingSlotAvailability.setCount(10);
+		parkingSlotAvailability.setVehicleCategory(vehicleCategory);
+		parkingSlotAvailabilities = List.of(parkingSlotAvailability);
+		
+		ParkingSlotFee parkingSlotFee = new ParkingSlotFee();
+		parkingSlotFee.setId(UUID.randomUUID());
+		parkingSlotFee.setCost(240d);
+		parkingSlotFee.setVehicleCategory(vehicleCategory);
+		parkingSlotFees = List.of(parkingSlotFee);
+		
+		ParkingSpace parkingSpace = new ParkingSpace();
+		parkingSpace.setCity("london");
+		parkingSpace.setId(UUID.randomUUID());
+		parkingSpace.setTiming("7 am to 7 pm");
+		parkingSpace.setParkingSlotAvailability(parkingSlotAvailabilities);
+		parkingSpace.setParkingSlotFee(parkingSlotFees);
+		parkingSpace.setLocation("The London Eye");
+		parkingSpaces = List.of(parkingSpace);
 	}
 	@Test
-	public void shouldgetVehicleCategories() {
+	public void shouldGetVehicleCategories() {
 		given(vehicleCategoryRepository.findAll()).willReturn(vehicleCategories);
 
 		List<VehicleCategory> result = userService.getVehicleCategories();
@@ -80,4 +106,37 @@ public class UserServiceImplTest {
 		
 		verify(vehicleCategoryRepository, times(1)).findAll();
 	}
+	
+	@Test
+	public void shouldGetParkingSlotAvailabilities() {
+		given(parkingSlotAvailabilityRepository.findAll()).willReturn(parkingSlotAvailabilities);
+
+		List<ParkingSlotAvailability> result = userService.getParkingSlotAvailabilities();
+		assertEquals(parkingSlotAvailabilities, result);
+		
+		verify(parkingSlotAvailabilityRepository, times(1)).findAll();
+	}
+	
+	@Test
+	public void shouldGetParkingSlotFees() {
+		given(parkingSlotFeeRepository.findAll()).willReturn(parkingSlotFees);
+
+		List<ParkingSlotFee> result = userService.getParkingSlotFees();
+		assertEquals(parkingSlotFees, result);
+		
+		verify(parkingSlotFeeRepository, times(1)).findAll();
+	}
+	
+	@Test
+	public void shouldGetParkingSpaces() {
+		given(parkingSpaceRepository.findAll()).willReturn(parkingSpaces);
+
+		List<ParkingSpace> result = userService.getParkingSpaces();
+		assertEquals(parkingSpaces, result);
+		
+		verify(parkingSpaceRepository, times(1)).findAll();
+	}
+	
+	
+	
 }
