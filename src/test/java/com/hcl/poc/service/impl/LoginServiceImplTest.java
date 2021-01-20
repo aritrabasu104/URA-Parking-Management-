@@ -17,6 +17,7 @@ import com.hcl.poc.dto.login.LoginResponse;
 import com.hcl.poc.model.AppUser;
 import com.hcl.poc.repository.UserRepository;
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 public class LoginServiceImplTest {
 
