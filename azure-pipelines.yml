@@ -53,7 +53,7 @@ stages:
         sqMavenPluginVersionChoice: 'latest'
         checkStyleRunAnalysis: true
         pmdRunAnalysis: true
-        findBugsRunAnalysis: true
+        findBugsRunAnalysis: false
     - task: SonarCloudPublish@1
       inputs:
         pollingTimeoutSec: '300'
