@@ -52,4 +52,5 @@ public class LoginServiceImplTest {
 
 		return Optional.of(appUser);
 	}
+	
 }
