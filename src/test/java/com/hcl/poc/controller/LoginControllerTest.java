@@ -11,7 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.hcl.poc.common.Validator;
 import com.hcl.poc.dto.login.Login;
 import com.hcl.poc.dto.login.LoginResponse;
 import com.hcl.poc.service.LoginService;
@@ -24,9 +23,6 @@ public class LoginControllerTest {
 	
 	@Mock
 	LoginService loginService;
-	
-	@Mock
-	private Validator validator;
 	
 	@Test
 	public void doLoginTest() {

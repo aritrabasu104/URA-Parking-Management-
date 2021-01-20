@@ -30,6 +30,9 @@ import com.hcl.poc.dto.user.UserResponseDto;
 import com.hcl.poc.dto.vehicle.VehicleCategoryResponseDto;
 import com.hcl.poc.dto.vehicle.VehicleRequestDto;
 import com.hcl.poc.dto.vehicle.VehicleResponseDto;
+import com.hcl.poc.error.custom.ParkingSpaceNotFoundException;
+import com.hcl.poc.error.custom.UserNotFoundException;
+import com.hcl.poc.error.custom.VehicleNotFoundException;
 import com.hcl.poc.model.AppUser;
 import com.hcl.poc.model.ParkingSlotAvailability;
 import com.hcl.poc.model.ParkingTicket;
@@ -50,7 +53,7 @@ public class UserController {
 	
 	@PostMapping("/vehicle")
 	public ResponseEntity<VehicleResponseDto> addVehicle(@RequestParam(required = true) UUID userId, 
-			@Valid @RequestBody VehicleRequestDto vehicleRequestDto) {
+			@Valid @RequestBody VehicleRequestDto vehicleRequestDto) throws UserNotFoundException {
 		Vehicle vehicle = modelMapper.map(vehicleRequestDto, Vehicle.class);
 		return ResponseEntity.ok(modelMapper.map(userService.addVehicle(userId,vehicle)
 				,VehicleResponseDto.class));
@@ -105,7 +108,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/ticket")
-	public ResponseEntity<ParkingTicketResponseDto> requestParkingTicket(@Valid @RequestBody ParkingTicketRequestDto parkingTicketRequestDto) {
+	public ResponseEntity<ParkingTicketResponseDto> requestParkingTicket(@Valid @RequestBody ParkingTicketRequestDto parkingTicketRequestDto) throws UserNotFoundException, VehicleNotFoundException, ParkingSpaceNotFoundException {
 		ParkingTicket parkingTicket = modelMapper.map(parkingTicketRequestDto, ParkingTicket.class);
 		return ResponseEntity.ok(modelMapper.map(userService.requestParkingTicket(parkingTicket)
 				,ParkingTicketResponseDto.class));

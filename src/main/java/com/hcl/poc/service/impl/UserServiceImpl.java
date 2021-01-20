@@ -2,12 +2,16 @@ package com.hcl.poc.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.hcl.poc.error.custom.ParkingSpaceNotFoundException;
+import com.hcl.poc.error.custom.UserNotFoundException;
+import com.hcl.poc.error.custom.VehicleNotFoundException;
 import com.hcl.poc.model.AppUser;
 import com.hcl.poc.model.AppUser.UserStaus;
 import com.hcl.poc.model.ParkingSlotAvailability;
@@ -108,10 +112,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Vehicle addVehicle(UUID userId, Vehicle vehicle) {
+	public Vehicle addVehicle(UUID userId, Vehicle vehicle) throws UserNotFoundException {
 		log.info("adding vehicle {} for {}", vehicle, userId);
 		vehicle = vehicleRepository.save(vehicle);
-		AppUser user = userRepository.findById(userId).get();
+		Optional<AppUser> userOptional = userRepository.findById(userId);
+		if(userOptional.isEmpty())
+			throw new UserNotFoundException(userId);
+		AppUser user = userOptional.get();
 		List<Vehicle> userVehicles = user.getVehicleList();
 		userVehicles.add(vehicle);
 		user.setVehicleList(userVehicles);
@@ -136,9 +143,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public ParkingTicket requestParkingTicket(ParkingTicket parkingTicket) {
+	public ParkingTicket requestParkingTicket(ParkingTicket parkingTicket) throws UserNotFoundException, VehicleNotFoundException, ParkingSpaceNotFoundException {
 		log.info("Requsting ParkingTicket {}", parkingTicket);
-		AppUser user = userRepository.findById(parkingTicket.getUser().getId()).get();
+		UUID userId = parkingTicket.getUser().getId();
+		Optional<AppUser> userOptional = userRepository.findById(userId);
+		if(userOptional.isEmpty())
+			throw new UserNotFoundException(userId);
+		AppUser user = userOptional.get();
 		if (user.getUserStatus().equals(UserStaus.ISSUE_EXIST)) {
 			parkingTicket.setStatus(TicketStatus.REJECTED);
 			parkingTicket.setDetail(USER_HAS_PENDING_ISSUES);
@@ -146,8 +157,17 @@ public class UserServiceImpl implements UserService {
 			parkingTicket.setStatus(TicketStatus.PENDING);
 			parkingTicket.setDetail(USER_ACCOUUNT_IS_PENDING);
 		} else {
-			Vehicle vehicle = vehicleRepository.findById(parkingTicket.getVehicle().getId()).get();
-			ParkingSpace parkingSpace = parkingSpaceRepository.findById(parkingTicket.getParkingSpace().getId()).get();
+			UUID vehicleId = parkingTicket.getVehicle().getId();
+			Optional<Vehicle> vehicleOptional = vehicleRepository.findById(vehicleId);
+			if(vehicleOptional.isEmpty())
+				throw new VehicleNotFoundException(vehicleId);
+			Vehicle vehicle = vehicleOptional.get();
+			
+			UUID parkingSpaceId = parkingTicket.getParkingSpace().getId();
+			Optional<ParkingSpace> parkingSpaceOptional = parkingSpaceRepository.findById(parkingSpaceId);
+			if(parkingSpaceOptional.isEmpty())
+				throw new ParkingSpaceNotFoundException(parkingSpaceId);
+			ParkingSpace parkingSpace = parkingSpaceOptional.get();
 			boolean shouldAllot = parkingSpace.getParkingSlotAvailability().stream().anyMatch(item -> {
 				return item.getVehicleCategory().getVehicleSize().equals(vehicle.getVehicleSize())
 						&& item.getVehicleCategory().getVehicleType().equals(vehicle.getVehiclType())

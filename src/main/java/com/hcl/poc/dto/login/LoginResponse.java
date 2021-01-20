@@ -15,7 +15,4 @@ public class LoginResponse {
 	
 	private String userId;
 
-	public LoginResponse() {
-
-	}
 }
