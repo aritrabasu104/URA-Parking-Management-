@@ -9,11 +9,6 @@ apidetails:
   license: Apache License Version 2.0
   licenseUrl: https://www.apache.org/licesen.html
 spring:
-  datasource:
-    url: jdbc:sqlserver://ura-sql.database.windows.net:1433;databaseName=ura-db
-    username: uradbadmin
-    password: 9o0T%KRDs!
-    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
   jpa:
     hibernate:      ddl-auto: update
 logging:
@@ -25,7 +20,13 @@ logging:
           descriptor: 
             sql: 
               BasicBinder: TRACE
-      
+azure:
+  keyvault:
+    client-id: a4f2fedc-a603-4bd4-b483-29ed224e3776
+    client-key: 93M9_yE59rY2NdWd.n2mXnvd_A6.9.VVq1
+    enabled: true
+    tenant-id: 189de737-c93a-4f5a-8b68-6f4ca9941912
+    uri: https://ura-keyvalult.vault.azure.net/      
 msg:
     userstatus: 
       pending: User account is not activated yet, once activated we will process the ticket request
