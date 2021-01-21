@@ -22,6 +22,7 @@
 		<sonar.projectKey>ura-backend</sonar.projectKey>
 		<sonar.organization>ura</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.coverage.exclusions>**/dto/**,**/model/**,**/config/**,</sonar.coverage.exclusions>
 	</properties>
 
 	<dependencies>
