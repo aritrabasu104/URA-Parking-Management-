@@ -1,11 +1,18 @@
-node{
-   
+pipeline{
+   agent any
+   stages{
    		stage('SCM Checkout'){
     		git 'https://github.com/aritrabasu104/URA-Parking-Management-.git'
     	}
         stage('Mvn Build'){
-              sh 'mvnw clean package'
+              sh 'mvn clean package'
      
         }
+    }
+    post{
+    	always{
+    		cleanWs()
+    	}
+    }
        
 }
