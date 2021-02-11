@@ -147,8 +147,8 @@ public class UserServiceImpl implements UserService {
 		log.info("Requsting ParkingTicket {}", parkingTicket);
 		UUID userId = parkingTicket.getUser().getId();
 		Optional<AppUser> userOptional = userRepository.findById(userId);
-//		if(userOptional.isEmpty())
-//			throw new UserNotFoundException(userId);
+		if(userOptional.isEmpty())
+			throw new UserNotFoundException(userId);
 		AppUser user = userOptional.get();
 		if (user.getUserStatus().equals(UserStaus.ISSUE_EXIST)) {
 			parkingTicket.setStatus(TicketStatus.REJECTED);

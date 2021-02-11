@@ -10,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -26,8 +28,10 @@ public class AppUser {
 	@EqualsAndHashCode.Include
 	private UUID id;
 	
+	@NotBlank
 	private String applicantName;
 	
+	@NotBlank
 	private String nricNo;
 	
 	private String registeredAddress;
@@ -40,10 +44,13 @@ public class AppUser {
 	@Email
 	private String emailId;
 	
+	@NotNull
 	private UserStaus userStatus;
 	
+	@NotBlank
 	private String userName;
 	
+	@NotBlank
 	private String password;
 	
 	@OneToMany(cascade = {CascadeType.ALL})
