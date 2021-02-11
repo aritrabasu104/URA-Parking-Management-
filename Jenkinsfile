@@ -1,15 +1,10 @@
 node{
    
-    stages{
-    	stage('SCM Checkout'){
+   		stage('SCM Checkout'){
     		git 'https://github.com/aritrabasu104/URA-Parking-Management-.git'
     	}
         stage('Mvn Build'){
-                steps{
-                    sh 'mvnw clean package'
-                }
-            }
-        
+              sh 'mvnw clean package'
      
         }
        
