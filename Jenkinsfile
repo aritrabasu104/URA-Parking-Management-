@@ -1,11 +1,9 @@
 pipeline{
    agent any
-   script {
-   env.JAVA_HOME="${tool 'openjdk11'}"
-   env.PATH="${env.JAVA_HOME}/bin:${env.PATH}"
-   }
+   
    tools {
         maven 'Maven3' 
+		jdk 'openjdk11'
     }
    stages{
    		stage('SCM Checkout'){
